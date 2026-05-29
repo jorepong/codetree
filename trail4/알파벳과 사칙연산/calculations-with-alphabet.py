@@ -9,7 +9,7 @@ for i in range(len(expression)):
 
 alphas = list(alphas)
 alpha_map = defaultdict(int)
-answer = 0
+answer = -float('inf')
 
 def calculate():
     global answer
