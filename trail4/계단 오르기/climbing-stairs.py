@@ -13,6 +13,7 @@ def solution(num):
     
     memo[num] = solution(num - 2) + solution(num - 3)
 
-    return memo[num]
+    return memo[num] % 10007
 
-print(solution(n))
+answer = solution(n)
+print(0 if answer == -1 else answer)
