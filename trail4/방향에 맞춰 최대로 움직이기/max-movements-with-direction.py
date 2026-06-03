@@ -3,6 +3,10 @@ num = [list(map(int, input().split())) for _ in range(n)]
 move_dir = [list(map(int, input().split())) for _ in range(n)]
 r, c = map(int, input().split())
 
+max_num = 0
+for num_line in num:
+    max_num = max(max_num, max(num_line))
+
 dirs = [(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)]
 answer = 0
 
@@ -11,7 +15,7 @@ def move(cr, cc, score, path):
     
     answer = max(answer, score)
 
-    if 9 - num[cr][cc] + score <= answer:
+    if max_num - num[cr][cc] + score <= answer:
         return
 
     dr, dc = dirs[move_dir[cr][cc] - 1]
