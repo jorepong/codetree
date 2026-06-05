@@ -9,4 +9,4 @@ for _ in range(n):
     a, b, c, d = 2 * a + b + c + d, a + c, a + b, a
     dp = [a, b, c, d]
 
-print(dp[0])
+print(dp[0] % 1000000007)
