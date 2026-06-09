@@ -15,10 +15,4 @@ for r in range(n):
         elif c < n - 1:
             dp[r][c] += dp[r][c+1]
 
-        # if r < n - 1:
-        #     dp[r][c] += min(dp[r + 1][c], )
-        
-        # if c > 0:
-        #     dp[r][c] += min(dp[r][c - 1], dp[r][c])
-
 print(dp[n-1][0])
