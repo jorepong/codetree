@@ -1,62 +1,16 @@
-#include <iostream>
-#include <queue>
+n = int(input())
+grid = [list(map(int, input().split())) for _ in range(n)]
 
-using namespace std;
+dp = [[float('inf')] * n for _ in range(n)]
 
-typedef pair<int, int> pii;
+for r in range(n):
+    for c in range(n - 1, -1, -1):
+        dp[r][c] = grid[r][c]
 
-const int INF = 1e9;
-int n;
-int grid[100][100];
-int dp[101][101]; // dp[i][j] : (i, j)까지 갔을 때의 최소 합
-int dx[] = {1, 0};
-int dy[] = {0, -1};
-queue<pii> q;
+        if r > 0:
+            dp[r][c] = min(dp[r][c], dp[r - 1][c] + grid[r][c])
 
-bool isin(int x, int y) {
-    return x >= 0 && x < n && y >= 0 && y < n;
-}
+        if c < n - 1:
+            dp[r][c] = min(dp[r][c], dp[r][c + 1] + grid[r][c])
 
-void bfs() {
-    q.push({0, n - 1});
-    dp[0][n - 1] = grid[0][n - 1];
-
-    while (!q.empty()) {
-        pii cur = q.front();
-        int x = cur.first;
-        int y = cur.second;
-        q.pop();
-
-        for (int i = 0; i < 2; i++) {
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-
-            if (isin(nx, ny)) {
-                //cout << "Debug: " << x << " " << y << " " << nx << " " << ny << "\n";
-                q.push({nx, ny});
-                dp[nx][ny] = min(dp[nx][ny], dp[x][y] + grid[nx][ny]);
-            }
-        }
-    }
-}
-
-int main() {
-    cin >> n;
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            cin >> grid[i][j];
-        }
-    }
-
-    // Please write your code here.
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            dp[i][j] = INF;
-        }
-    }
-
-    bfs();
-    cout << dp[n - 1][0] << "\n";
-
-    return 0;
-}
+print(dp[n - 1][0])
