@@ -2,7 +2,7 @@ n = int(input())
 arr = list(map(int, input().split()))
 
 # Please write your code here.
-dp = [-1] * n
+dp = [-float('inf')] * n
 dp[0] = 0
 
 for i in range(1, n):
