@@ -2,7 +2,7 @@ n, m = map(int, input().split())
 grid = [list(map(int, input().split())) for _ in range(n)]
 
 # Please write your code here.
-dp = [[0] * m for _ in range(n)]
+dp = [[-float('inf')] * m for _ in range(n)]
 dp[0][0] = 1
 
 for r in range(1, n):
