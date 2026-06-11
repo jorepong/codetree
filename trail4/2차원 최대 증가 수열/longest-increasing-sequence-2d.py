@@ -11,8 +11,8 @@ for r in range(1, n):
                 if grid[ir][ic] < grid[r][c]:
                     dp[r][c] = max(dp[r][c], dp[ir][ic] + 1)
 
-answer = max(dp[-1])
-for i in range(n):
-    answer = max(answer, dp[i][-1])
+answer = 0
+for line in dp:
+    answer = max(answer, max(line))
 
 print(answer)
